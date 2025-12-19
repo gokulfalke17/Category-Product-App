@@ -7,6 +7,7 @@ import com.techpulse.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -27,7 +28,11 @@ public class CategoryService {
     }
 
     public Category getCategoryById(Long id) {
-        return categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+        Optional<Category> category = categoryRepository.findById(id);
+        if(category.isPresent()) {
+            return category.get();
+        } else {
+            throw new RuntimeException("Category not found with id: " + id);
+        }
     }
 }
