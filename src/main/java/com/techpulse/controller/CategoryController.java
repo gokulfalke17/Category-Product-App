@@ -23,6 +23,8 @@ public class CategoryController {
         return categoryService.addCategory(categoryDTO);
     }
 
+    // added
+
     // GET ALL CATEGORIES
     @GetMapping
     public List<Category> getAllCategories() {
