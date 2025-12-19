@@ -18,8 +18,8 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public Category createCategory(CategoryDTO dto) {
-        Category category = CategoryMapper.toEntity(dto);
+    public Category addCategory(CategoryDTO categoryDTO) {
+        Category category = CategoryMapper.toEntity(categoryDTO);
         return categoryRepository.save(category);
     }
 
@@ -31,6 +31,15 @@ public class CategoryService {
         Optional<Category> category = categoryRepository.findById(id);
         if(category.isPresent()) {
             return category.get();
+        } else {
+            throw new RuntimeException("Category not found with id: " + id);
+        }
+    }
+
+    public void deleteCategory(Long id) {
+        Optional<Category> category = categoryRepository.findById(id);
+        if(category.isPresent()) {
+            categoryRepository.deleteById(id);
         } else {
             throw new RuntimeException("Category not found with id: " + id);
         }
