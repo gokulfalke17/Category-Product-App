@@ -23,11 +23,11 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    public List<Category> getAllCategories() {
+    public List<Category> GetAllCategories() {
         return categoryRepository.findAll();
     }
 
-    public Category getCategoryById(Long id) {
+    public Category GetAllCategories(Long id) {
         Optional<Category> category = categoryRepository.findById(id);
         if(category.isPresent()) {
             return category.get();
